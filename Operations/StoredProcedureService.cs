@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FluentDapper.Helpers
+namespace FluentDapper.Operations
 {
-    internal class ReflectionCache
+    internal class StoredProcedureService
     {
     }
 }

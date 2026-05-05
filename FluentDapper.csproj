@@ -31,8 +31,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Dapper.2.1.72\lib\net461\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.9.0.1\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,28 +54,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\DbConnectionFactory.cs" />
-    <Compile Include="Core\IDbConnectionFactory.cs" />
+    <Compile Include="Core\DapperContext.cs" />
+    <Compile Include="Core\DapperHelpers.cs" />
     <Compile Include="FluentDapperClient.cs" />
-    <Compile Include="Helpers\ParameterHelper.cs" />
-    <Compile Include="Helpers\ReflectionCache.cs" />
-    <Compile Include="Helpers\SqlBuilder.cs" />
-    <Compile Include="Interfaces\DeleteService.cs" />
-    <Compile Include="Interfaces\InsertService.cs" />
-    <Compile Include="Interfaces\PaginationService.cs" />
-    <Compile Include="Interfaces\QueryService.cs" />
-    <Compile Include="Interfaces\StoredProcedureService.cs" />
-    <Compile Include="Interfaces\UpdateService.cs" />
+    <Compile Include="Operations\DeleteService.cs" />
+    <Compile Include="Operations\InsertService.cs" />
+    <Compile Include="Operations\PaginationService.cs" />
+    <Compile Include="Operations\QueryService.cs" />
+    <Compile Include="Operations\StoredProcedureService.cs" />
+    <Compile Include="Operations\UpdateService.cs" />
     <Compile Include="Models\ServerSideRequest.cs" />
     <Compile Include="Models\ServerSideResponse.cs" />
-    <Compile Include="Operations\IDeleteService.cs" />
-    <Compile Include="Operations\IInsertService.cs" />
-    <Compile Include="Operations\IPaginationService.cs" />
-    <Compile Include="Operations\IQueryService.cs" />
-    <Compile Include="Operations\IStoredProcedureService.cs" />
-    <Compile Include="Operations\IUpdateService.cs" />
+    <Compile Include="Interfaces\IDeleteService.cs" />
+    <Compile Include="Interfaces\IInsertService.cs" />
+    <Compile Include="Interfaces\IPaginationService.cs" />
+    <Compile Include="Interfaces\IQueryService.cs" />
+    <Compile Include="Interfaces\IStoredProcedureService.cs" />
+    <Compile Include="Interfaces\IUpdateService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

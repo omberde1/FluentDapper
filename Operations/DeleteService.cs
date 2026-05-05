@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FluentDapper.Operations
 {
-    internal interface IDeleteService
+    internal class DeleteService
     {
     }
 }

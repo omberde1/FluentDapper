@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FluentDapper.Interfaces
 {
-    internal class QueryService
+    internal interface IDeleteService
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FluentDapper.Operations
 {
-    internal interface IStoredProcedureService
+    internal class PaginationService
     {
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FluentDapper.Operations
+namespace FluentDapper.Interfaces
 {
-    internal interface IUpdateService
+    internal interface IStoredProcedureService
     {
     }
 }
