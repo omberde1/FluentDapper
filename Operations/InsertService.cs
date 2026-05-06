@@ -13,17 +13,16 @@ namespace FluentDapper.Operations
     internal class InsertService : IInsertService
     {
         private readonly DapperContext _context;
-
         public InsertService(DapperContext context)
         {
             _context = context;
         }
 
-        public Task<int> Single<T>(string tableName, T model, SqlConnection conn = null, SqlTransaction transaction = null)
+        public Task<int> EntityAsync<T>(string tableName, T model, SqlConnection conn = null, SqlTransaction transaction = null)
         {
-            return Single<T, int>(tableName, model, conn, transaction);
+            return EntityAsync<T, int>(tableName, model, conn, transaction);
         }
-        public async Task<TKey> Single<T, TKey>(string tableName, T model, SqlConnection conn = null, SqlTransaction transaction = null) where TKey : struct
+        public async Task<TKey> EntityAsync<T, TKey>(string tableName, T model, SqlConnection conn = null, SqlTransaction transaction = null) where TKey : struct
         {
             var props = DapperHelpers.GetNonNullProperties(model)
                 .Where(p => !string.Equals(p.Name, "id", StringComparison.OrdinalIgnoreCase))
@@ -47,7 +46,8 @@ namespace FluentDapper.Operations
                 return await c.QuerySingleAsync<TKey>(sql, paramObject, transaction).ConfigureAwait(false);
             }, connToUse);
         }
-        public async Task<int> SingleWithIdentity<T>(string tableName, T model, SqlConnection conn = null, SqlTransaction transaction = null)
+
+        public async Task<int> EntityWithIdentityAsync<T>(string tableName, T model, SqlConnection conn = null, SqlTransaction transaction = null)
         {
             var props = DapperHelpers.GetCachedProperties(typeof(T)).ToList();
 
@@ -83,7 +83,8 @@ namespace FluentDapper.Operations
                 return await c.ExecuteAsync(sql, paramObject, transaction).ConfigureAwait(false);
             }, connToUse);
         }
-        public async Task Bulk<T>(string tableName, List<T> modelList, SqlConnection conn = null, SqlTransaction transaction = null)
+
+        public async Task BulkAsync<T>(string tableName, List<T> modelList, SqlConnection conn = null, SqlTransaction transaction = null)
         {
             if (modelList == null || modelList.Count == 0) return;
 
@@ -103,5 +104,19 @@ namespace FluentDapper.Operations
             }, connToUse);
         }
 
+        public Task<int> SqlAsync<T>(string sql, object param = null, SqlConnection conn = null, SqlTransaction transaction = null)
+        {
+            return SqlAsync<T, int>(sql, param, conn, transaction);
+        }
+        public async Task<TKey> SqlAsync<T, TKey>(string sql, object param = null, SqlConnection conn = null, SqlTransaction transaction = null) where TKey : struct
+        {
+            sql = $"{sql} SELECT SCOPE_IDENTITY();";
+
+            var connToUse = transaction?.Connection ?? conn;
+            return await _context.WithConnectionAsync(async c =>
+            {
+                return await c.QuerySingleAsync<TKey>(sql, param, transaction).ConfigureAwait(false);
+            }, connToUse);
+        }
     }
 }
