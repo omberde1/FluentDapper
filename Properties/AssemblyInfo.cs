@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("FluentDapper")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A simple, fluent wrapper over Dapper for .NET Framework developers.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("OmBerde")]
 [assembly: AssemblyProduct("FluentDapper")]
 [assembly: AssemblyCopyright("Copyright ©  2026")]
 [assembly: AssemblyTrademark("")]

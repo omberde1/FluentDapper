@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+	<metadata>
+		<id>FluentDapper</id>
+		<version>1.0.0</version>
+		<title>FluentDapper</title>
+		<authors>OmBerde</authors>
+		<owners>OmBerde</owners>
+
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+
+		<license type="expression">MIT</license>
+
+		<projectUrl>https://github.com/omberde1/FluentDapper</projectUrl>
+		<repository type="git" url="https://github.com/omberde1/FluentDapper" />
+
+		<description>A simple, fluent wrapper over Dapper for .NET Framework developers. It provides clean abstractions for Insert, Update, Delete, and Query operations with automatic parameter handling.</description>
+
+		<releaseNotes>
+			Initial release of FluentDapper.
+		</releaseNotes>
+
+		<copyright>Copyright © OmBerde 2026</copyright>
+
+		<tags>dapper sql orm fluent database .net framework</tags>
+	</metadata>
+</package>
