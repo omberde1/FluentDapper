@@ -1,12 +1,13 @@
-﻿using FluentDapper.Core;
+﻿using Dapper;
+using FluentDapper.Core;
 using FluentDapper.Interfaces;
-using Dapper;
 using System;
-using System.Data;
-using System.Linq;
-using System.Data.SqlClient;
-using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
 
 namespace FluentDapper.Operations
 {
@@ -24,6 +25,9 @@ namespace FluentDapper.Operations
         }
         public async Task<TKey> EntityAsync<T, TKey>(string tableName, T model, SqlConnection conn = null, SqlTransaction transaction = null) where TKey : struct
         {
+            if (string.IsNullOrWhiteSpace(tableName)) throw new ArgumentException("TABLE name cannot be null or empty.");
+            if (model == null) throw new ArgumentNullException(nameof(model));
+
             var props = DapperHelpers.GetNonNullProperties(model)
                 .Where(p => !string.Equals(p.Name, "id", StringComparison.OrdinalIgnoreCase))
                 .ToList();
@@ -49,6 +53,9 @@ namespace FluentDapper.Operations
 
         public async Task<int> EntityWithIdentityAsync<T>(string tableName, T model, SqlConnection conn = null, SqlTransaction transaction = null)
         {
+            if (string.IsNullOrWhiteSpace(tableName)) throw new ArgumentException("TABLE name cannot be null or empty.");
+            if (model == null) throw new ArgumentNullException(nameof(model));
+
             var props = DapperHelpers.GetCachedProperties(typeof(T)).ToList();
 
             if (!props.Any()) throw new Exception("No properties found in the model.");
@@ -86,7 +93,8 @@ namespace FluentDapper.Operations
 
         public async Task BulkAsync<T>(string tableName, List<T> modelList, SqlConnection conn = null, SqlTransaction transaction = null)
         {
-            if (modelList == null || modelList.Count == 0) return;
+            if (string.IsNullOrWhiteSpace(tableName)) throw new ArgumentException("TABLE name cannot be null or empty.");
+            if (modelList == null || modelList.Count == 0) throw new ArgumentNullException("ModelList cannot be NULL or EMPTY");
 
             var props = DapperHelpers.GetCachedProperties(typeof(T))
                 .Where(p => !string.Equals(p.Name, "id", StringComparison.OrdinalIgnoreCase))
@@ -110,6 +118,7 @@ namespace FluentDapper.Operations
         }
         public async Task<TKey> SqlAsync<T, TKey>(string sql, object param = null, SqlConnection conn = null, SqlTransaction transaction = null) where TKey : struct
         {
+            if (string.IsNullOrWhiteSpace(sql)) throw new ArgumentException("SQL cannot be null or empty.");
             sql = $"{sql} SELECT SCOPE_IDENTITY();";
 
             var connToUse = transaction?.Connection ?? conn;

@@ -8,7 +8,7 @@ namespace FluentDapper
     {
         public IInsertService Insert { get; }
         public IUpdateService Update { get; }
-        // public IDeleteService Delete { get; }
+        public IDeleteService Delete { get; }
         // public IQueryService Query { get; }
 
         public FluentDapperClient(string connectionString)
@@ -17,6 +17,7 @@ namespace FluentDapper
 
             Insert = new InsertService(context);
             Update = new UpdateService(context);
+            Delete = new DeleteService(context);
         }
     }
 }
