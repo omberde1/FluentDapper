@@ -59,17 +59,13 @@
     <Compile Include="FluentDapperClient.cs" />
     <Compile Include="Operations\DeleteService.cs" />
     <Compile Include="Operations\InsertService.cs" />
-    <Compile Include="Operations\PaginationService.cs" />
     <Compile Include="Operations\QueryService.cs" />
-    <Compile Include="Operations\StoredProcedureService.cs" />
     <Compile Include="Operations\UpdateService.cs" />
     <Compile Include="Models\ServerSideRequest.cs" />
     <Compile Include="Models\ServerSideResponse.cs" />
     <Compile Include="Interfaces\IDeleteService.cs" />
     <Compile Include="Interfaces\IInsertService.cs" />
-    <Compile Include="Interfaces\IPaginationService.cs" />
     <Compile Include="Interfaces\IQueryService.cs" />
-    <Compile Include="Interfaces\IStoredProcedureService.cs" />
     <Compile Include="Interfaces\IUpdateService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

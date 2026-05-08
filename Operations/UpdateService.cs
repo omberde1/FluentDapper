@@ -16,6 +16,20 @@ namespace FluentDapper.Operations
             _context = context;
         }
 
+        /// <summary>
+        /// Updates records in the specified table using values from the provided model.
+        /// Only non-null properties are included in the SET clause.
+        /// </summary>
+        /// <typeparam name="T">Type of the model containing updated values.</typeparam>
+        /// <param name="tableName">Target table name.</param>
+        /// <param name="model">Object containing values to update.</param>
+        /// <param name="whereClause">SQL WHERE condition to filter records.</param>
+        /// <param name="conn">Optional existing SQL connection.</param>
+        /// <param name="transaction">Optional SQL transaction.</param>
+        /// <returns>Number of rows affected.</returns>
+        /// <remarks>
+        /// Ensure the WHERE clause is properly defined to avoid updating unintended records.
+        /// </remarks>
         public async Task<int> EntityAsync<T>(string tableName, T model, string whereClause, SqlConnection conn = null, SqlTransaction transaction = null)
         {
             if (string.IsNullOrWhiteSpace(tableName)) throw new ArgumentException("TABLE name cannot be null or empty.");
@@ -47,6 +61,20 @@ namespace FluentDapper.Operations
                 return await c.ExecuteAsync(sql, paramObject, transaction).ConfigureAwait(false);
             }, connToUse);
         }
+
+        /// <summary>
+        /// Updates records in the specified table using a custom SET clause.
+        /// </summary>
+        /// <param name="tableName">Target table name.</param>
+        /// <param name="setClause">Custom SET clause (e.g., "Name = @Name").</param>
+        /// <param name="whereClause">SQL WHERE condition to filter records.</param>
+        /// <param name="param">Query parameters.</param>
+        /// <param name="conn">Optional existing SQL connection.</param>
+        /// <param name="transaction">Optional SQL transaction.</param>
+        /// <returns>Number of rows affected.</returns>
+        /// <remarks>
+        /// Use this method when you need full control over the update statement.
+        /// </remarks>
         public async Task<int> SetAsync(string tableName, string setClause, string whereClause, object param = null, SqlConnection conn = null, SqlTransaction transaction = null)
         {
             if (string.IsNullOrWhiteSpace(tableName)) throw new ArgumentException("TABLE name cannot be null or empty.");
@@ -62,6 +90,18 @@ namespace FluentDapper.Operations
                 return rowsAffected;
             }, connToUse);
         }
+
+        /// <summary>
+        /// Executes a custom UPDATE SQL query.
+        /// </summary>
+        /// <param name="sql">Full SQL update query.</param>
+        /// <param name="param">Query parameters.</param>
+        /// <param name="conn">Optional existing SQL connection.</param>
+        /// <param name="transaction">Optional SQL transaction.</param>
+        /// <returns>Number of rows affected.</returns>
+        /// <remarks>
+        /// Use this method for complex or fully custom update operations.
+        /// </remarks>
         public async Task<int> SqlAsync(string sql, object param = null, SqlConnection conn = null, SqlTransaction transaction = null)
         {
             if (string.IsNullOrWhiteSpace(sql)) throw new ArgumentException("SQL cannot be null or empty.");

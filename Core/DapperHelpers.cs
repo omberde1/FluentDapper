@@ -14,6 +14,12 @@ namespace FluentDapper.Core
             return _propertyCache.GetOrAdd(type, t => t.GetProperties().ToList());
         }
 
+        internal static void ValidateIdentifier(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input) || input.Any(c => !char.IsLetterOrDigit(c) && c != '_'))
+                throw new ArgumentException("Invalid SQL identifier.");
+        }
+
         internal static object EnsureSafeValue(Type type, object value)
         {
             if (value != null) return value;
@@ -45,6 +51,5 @@ namespace FluentDapper.Core
         // Optional: if want to exclude props from insert/update
         [AttributeUsage(AttributeTargets.Property)]
         private class IgnorePropertyAttribute : Attribute { }
-
     }
 }
