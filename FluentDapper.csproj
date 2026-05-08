@@ -56,7 +56,7 @@
   <ItemGroup>
     <Compile Include="Core\DapperContext.cs" />
     <Compile Include="Core\DapperHelpers.cs" />
-    <Compile Include="FluentDapper.cs" />
+    <Compile Include="FluentDapperClient.cs" />
     <Compile Include="Operations\DeleteService.cs" />
     <Compile Include="Operations\InsertService.cs" />
     <Compile Include="Operations\QueryService.cs" />

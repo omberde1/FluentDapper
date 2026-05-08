@@ -13,7 +13,7 @@ namespace FluentDapper
     /// Create a single instance of this class and reuse it throughout your application.
     /// It manages internal connection handling via DapperContext.
     /// </remarks>
-    public class FluentDapper
+    public class FluentDapperClient
     {
         /// <summary>
         /// Provides insert operations for database entities.
@@ -36,7 +36,7 @@ namespace FluentDapper
         /// Initializes a new instance of FluentDapper using the provided SQL connection string.
         /// </summary>
         /// <param name="connectionString">Database connection string.</param>
-        public FluentDapper(string connectionString)
+        public FluentDapperClient(string connectionString)
         {
             var context = new DapperContext(connectionString);
 

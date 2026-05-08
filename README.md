@@ -47,7 +47,7 @@ dotnet add package FluentDapper
 Create a single instance of `FluentDapper` and reuse it throughout your application (e.g., register it as a singleton in your DI container).
 
 ```csharp
-var db = new FluentDapper("your_connection_string_here");
+var db = new FluentDapperClient("your_connection_string_here");
 ```
 
 That's it. You now have access to four services:
