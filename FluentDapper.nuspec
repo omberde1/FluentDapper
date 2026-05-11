@@ -1,27 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package>
-	<metadata>
-		<id>FluentDapper</id>
-		<version>2.0.0</version>
-		<title>FluentDapper</title>
-		<authors>OmBerde</authors>
-		<owners>OmBerde</owners>
+  <metadata>
+    <id>FluentDapper</id>
+    <version>2.0.2</version>
 
-		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <title>FluentDapper</title>
 
-		<license type="expression">MIT</license>
+    <authors>OmBerde</authors>
+    <owners>OmBerde</owners>
 
-		<projectUrl>https://github.com/omberde1/FluentDapper</projectUrl>
-		<repository type="git" url="https://github.com/omberde1/FluentDapper" />
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
 
-		<description>A simple, fluent wrapper over Dapper for .NET Framework developers. It provides clean abstractions for Insert, Update, Delete, and Query operations with automatic parameter handling.</description>
+    <license type="expression">MIT</license>
 
-		<releaseNotes>
-			Initial release of FluentDapper.
-		</releaseNotes>
+    <projectUrl>https://github.com/omberde1/FluentDapper</projectUrl>
 
-		<copyright>Copyright © OmBerde 2026</copyright>
+    <repository type="git" url="https://github.com/omberde1/FluentDapper" />
 
-		<tags>dapper sql orm fluent database .net framework</tags>
-	</metadata>
+    <description>
+      A simple, fluent wrapper over Dapper for .NET Framework developers.
+    </description>
+
+    <releaseNotes>
+      Fixed dependency packaging and runtime compatibility issues.
+    </releaseNotes>
+
+    <tags>
+      dapper sql orm fluent database .net framework
+    </tags>
+
+    <dependencies>
+      <group targetFramework=".NETFramework4.7.2">
+
+        <dependency id="Dapper" version="2.1.72" />
+
+        <dependency id="Microsoft.Bcl.AsyncInterfaces" version="9.0.1" />
+
+        <dependency id="System.Runtime.CompilerServices.Unsafe" version="4.5.3" />
+
+        <dependency id="System.Threading.Tasks.Extensions" version="4.5.4" />
+
+      </group>
+    </dependencies>
+
+  </metadata>
+
+  <files>
+    <file src="bin\Release\FluentDapper.dll" target="lib\net472\" />
+    <file src="bin\Release\FluentDapper.pdb" target="lib\net472\" />
+  </files>
 </package>
